@@ -1,0 +1,52 @@
+--- ../src-base/minecraft/net/minecraft/entity/EnumCreatureType.java
++++ ../src-work/minecraft/net/minecraft/entity/EnumCreatureType.java
+@@ -1,6 +1,5 @@
+ package net.minecraft.entity;
+ 
+-import net.minecraft.block.material.Material;
+ import net.minecraft.entity.monster.IMob;
+ import net.minecraft.entity.passive.EntityAmbientCreature;
+ import net.minecraft.entity.passive.EntityAnimal;
+@@ -9,24 +8,24 @@
+ 
+ public enum EnumCreatureType
+ {
+-    MONSTER(IMob.class, 70, Material.field_151579_a, false, false),
+-    CREATURE(EntityAnimal.class, 10, Material.field_151579_a, true, true),
+-    AMBIENT(EntityAmbientCreature.class, 15, Material.field_151579_a, true, false),
+-    WATER_CREATURE(EntityWaterMob.class, 5, Material.field_151586_h, true, false);
++    MONSTER(IMob.class, 70, false, false,"MONSTER"),
++    CREATURE(EntityAnimal.class, 10, true, true,"CREATURE"),
++    AMBIENT(EntityAmbientCreature.class, 15, true, false,"AMBIENT"),
++    WATER_CREATURE(EntityWaterMob.class, 5, true, false,"WATER_CREATURE");
+ 
+     private final Class <? extends IAnimals > field_75605_d;
+     private final int field_75606_e;
+-    private final Material field_75603_f;
+     private final boolean field_75604_g;
+     private final boolean field_82707_i;
++    private String stringVal;
+ 
+-    private EnumCreatureType(Class <? extends IAnimals > p_i1596_3_, int p_i1596_4_, Material p_i1596_5_, boolean p_i1596_6_, boolean p_i1596_7_)
++    EnumCreatureType(Class<? extends IAnimals> creatureClassIn, int maxNumberOfCreatureIn, boolean isPeacefulCreatureIn, boolean isAnimalIn, String stringVal)
+     {
+-        this.field_75605_d = p_i1596_3_;
+-        this.field_75606_e = p_i1596_4_;
+-        this.field_75603_f = p_i1596_5_;
+-        this.field_75604_g = p_i1596_6_;
+-        this.field_82707_i = p_i1596_7_;
++        this.field_75605_d = creatureClassIn;
++        this.field_75606_e = maxNumberOfCreatureIn;
++        this.field_75604_g = isPeacefulCreatureIn;
++        this.field_82707_i = isAnimalIn;
++        this.stringVal = stringVal;
+     }
+ 
+     public Class <? extends IAnimals > func_75598_a()
+@@ -48,4 +47,6 @@
+     {
+         return this.field_82707_i;
+     }
++
++    public String toString(){return this.stringVal;}
+ }
